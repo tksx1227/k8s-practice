@@ -11,6 +11,8 @@ kubernetes勉強用リポジトリ
 ## 用語
 
 ## コマンドなど
+**minikube**
+
 ```bash
 # バージョン確認
 $ minikube version
@@ -31,7 +33,11 @@ $ minikube addons list
 # アドオンを有効化・無効化
 $ minikube addons enable [ADDON_NAME]
 $ minikube addons unable [ADDON_NAME]
+```
 
+**kubectl**
+
+```bash
 # kubectlの基本構文
 # kubectl <-n [NAMESPACE]> [command] [TYPE] [NAME] [flags]
 
