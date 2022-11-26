@@ -33,7 +33,7 @@ $ minikube addons enable [ADDON_NAME]
 $ minikube addons unable [ADDON_NAME]
 
 # kubectlの基本構文
-# kubectl [command] [TYPE] [NAME] [flags]
+# kubectl <-n [NAMESPACE]> [command] [TYPE] [NAME] [flags]
 
 # バージョン確認
 $ kubectl version
@@ -48,12 +48,13 @@ $ kubectl get deployments   # デプロイ
 $ kubectl get services   # サービス
 $ kubectl get pods   # Pod
 $ kubectl get events   # イベント（操作ログ）
+$ kubectl get rs   # レプリカセット
 
 # 設定を確認する
 $ kubectl config view
 
 # デプロイを作成する
-$ kubectl create deployment [DEPLOY_NAME] [--image=IMAGE_URL]
+$ kubectl create deployment [DEPLOY_NAME] [--image=IMAGE]
 
 # サービスを作成してアプリケーションを公開する
 # portは最終的にアクセスするアプリケーションのポート番号を指定する
@@ -72,5 +73,20 @@ $ kubectl describe pods [POD_NAME]
 
 # オブジェクトにラベルを付与する（コマンドは一例）
 $ kubectl label pods [POD_NAME] [KEY]=[VALUE]
+
+# レプリカの数を変更する
+$ kubectl scale deployments/[DEPLOY_NAME] --replicas=[REPLICA_NUMBER]
+
+# コンテナのイメージを変更する
+$ kubectl set image deployements/[DEPLOY_NAME] [CONTAINER_NAME]=[IMAGE]
+
+# ロールアウト状況を確認する
+$ kubectl rollout status deployments/[DEPLOY_NAME]
+
+# ロールアウトを直前の状態にリバートする
+$ kubectl rollout undo deployments/[DEPLOY_NAME]
+
+# マニュフェストファイルを読み込む
+$ kubectl apply -f [FILE_PATH]
 ```
 
