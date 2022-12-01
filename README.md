@@ -47,6 +47,12 @@ $ kubectl version
 # クラスタの情報を見る
 $ kubectl cluster-info
 
+# 接続先一覧をみる
+$ kubectl config get-contexts
+
+# 接続先を切り替える
+$ kubectl config use-context <CONTEXT_NAME>
+
 # クラスタ内の情報を見る
 # オプション <-l KEY=VALUE> をつけると特定ラベルを持つものを操作対象として指定できる
 $ kubectl get nodes   # ノード
