@@ -31,8 +31,8 @@ $ minikube dashboard
 $ minikube addons list
 
 # アドオンを有効化・無効化
-$ minikube addons enable [ADDON_NAME]
-$ minikube addons unable [ADDON_NAME]
+$ minikube addons enable <ADDON_NAME>
+$ minikube addons unable <ADDON_NAME>
 ```
 
 **kubectl**
@@ -66,39 +66,39 @@ $ kubectl get rs   # レプリカセット
 $ kubectl config view
 
 # デプロイを作成する
-$ kubectl create deployment [DEPLOY_NAME] [--image=IMAGE]
+$ kubectl create deployment <DEPLOY_NAME> [--image=IMAGE]
 
 # サービスを作成してアプリケーションを公開する
 # portは最終的にアクセスするアプリケーションのポート番号を指定する
-$ kubectl expose deployment [DEPLOY_NAME] --type=LoadBalancer --port=80
+$ kubectl expose deployment <DEPLOY_NAME> --type=LoadBalancer --port=80
 
 # プロキシサーバーを立てる
 $ kubectl proxy
 
 # 指定したコンテナでコマンドを実行する
 # Podにコンテナが１つしかない場合はコンテナ名を省略可
-$ kubectl exec [POD_NAME] <-c [CONTAINER_NAME]> -- [CMD]
+$ kubectl exec <POD_NAME> [-c CONTAINER_NAME] -- <CMD>
 
 # オブジェクトの詳細をみる（コマンドは一例）
-$ kubectl describe services [SERVICE_NAME]
-$ kubectl describe pods [POD_NAME]
+$ kubectl describe services <SERVICE_NAME>
+$ kubectl describe pods <POD_NAME>
 
 # オブジェクトにラベルを付与する（コマンドは一例）
-$ kubectl label pods [POD_NAME] [KEY]=[VALUE]
+$ kubectl label pods <POD_NAME> <KEY>=<VALUE>
 
 # レプリカの数を変更する
-$ kubectl scale deployments/[DEPLOY_NAME] --replicas=[REPLICA_NUMBER]
+$ kubectl scale deployments/<DEPLOY_NAME> --replicas=<REPLICA_NUMBER>
 
 # コンテナのイメージを変更する
-$ kubectl set image deployements/[DEPLOY_NAME] [CONTAINER_NAME]=[IMAGE]
+$ kubectl set image deployements/<DEPLOY_NAME> <CONTAINER_NAME>=<IMAGE>
 
 # ロールアウト状況を確認する
-$ kubectl rollout status deployments/[DEPLOY_NAME]
+$ kubectl rollout status deployments/<DEPLOY_NAME>
 
 # ロールアウトを直前の状態にリバートする
-$ kubectl rollout undo deployments/[DEPLOY_NAME]
+$ kubectl rollout undo deployments/<DEPLOY_NAME>
 
 # マニュフェストファイルを読み込む
-$ kubectl apply -f [FILE_PATH]
+$ kubectl apply -f <FILE_PATH>
 ```
 
