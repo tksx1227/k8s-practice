@@ -1,14 +1,12 @@
 # k8s-practice
 kubernetes勉強用リポジトリ
 
-## k8s概要
+# Kubernetes
 コンテナを複数束ねたものをPodとよび、k8sが管理する最小単位となる。
 
 複数のPodの集合をNodeと呼ぶ。Nodeにはマスターとワーカーの２種類があり、Podを持つものはワーカーノードである。マスターノードはユーザーからの指示を受けるクラスタ制御用のノード。
 
 複数のNodeの集合をクラスタと呼ぶ。
-
-## 用語
 
 ## コマンドなど
 **minikube**
@@ -102,3 +100,58 @@ $ kubectl rollout undo deployments/<DEPLOY_NAME>
 $ kubectl apply -f <FILE_PATH>
 ```
 
+# Helm
+helmはk8s用のパッケージマネージャーであり、よく使われるマニフェストをテンプレートとして使用することができる。
+
+helmはリポジトリからチャートと呼ばれるテンプレートをk8sにインストールし、それをもとにアプリケーションを構築する。
+
+この時チャートによって作られるアプリケーションをリリースと呼ぶ。
+
+リポジトリを追加すると、そこに含まれるチャートは全てクライアント側に保存される。
+
+## コマンドなど
+
+**helm**
+
+```bash
+# インストール済みのリリースを表示する
+$ helm list
+
+# 設定されたリポジトリを表示する
+$ helm repo list
+
+# リポジトリを追加する
+$ helm repo add <REPOSITORY_NAME> <REPOSITORY_URL>
+
+# リポジトリを削除する
+$ helm repo remove <REPOSITORY_NAME>
+
+# helmクライアントが持つチャートを最新のものに更新する
+$ helm repo update
+
+# Artifact Hub, ローカルに追加したリポジトリの中からChartを探す
+$ helm search hub <TARGET_NAME>
+$ helm search repo <TARGET_NAME>
+
+# チャートをインストールする
+# リリース名は任意の値を指定する
+# --generate-nameオプションをつけるとリリース名を省略できる
+$ helm install <RELEASE> <CHART>
+$ helm instlal <CHART> --generate-name
+
+# クラスタからリリースをアンインストールする
+$ helm uninstall <RELEASE>
+
+# リリースの状態や設定情報を確認する
+$ helm status <RELEASE>
+
+# チャートで設定可能なオプションを確認する
+$ helm show values <CHART>
+
+# 指定したリリースで独自に設定したオプションを表示する
+$ helm get values <RELEASE>
+
+# 既存のリリースをアップグレードする
+# -fオプションでファイルを指定することで任意の差分を追加できる
+$ helm upgrade [-f CONFIG_FILE] <RELEASE> <CHART>
+```
