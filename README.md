@@ -107,6 +107,8 @@ helmはリポジトリからチャートと呼ばれるテンプレートをk8s�
 
 この時チャートによって作られるアプリケーションをリリースと呼ぶ。
 
+helmを使うことで、HTTPサーバーやデータベース、キャッシュなどを備えたWebアプリスタックなどの複雑なものを一括でデプロイすることができる。
+
 リポジトリを追加すると、そこに含まれるチャートは全てクライアント側に保存される。
 
 ## コマンドなど
@@ -136,6 +138,7 @@ $ helm search repo <TARGET_NAME>
 # チャートをインストールする
 # リリース名は任意の値を指定する
 # --generate-nameオプションをつけるとリリース名を省略できる
+# チャートは配布されたパッケージのパスを指定することもできる
 $ helm install <RELEASE> <CHART>
 $ helm instlal <CHART> --generate-name
 
@@ -153,5 +156,15 @@ $ helm get values <RELEASE>
 
 # 既存のリリースをアップグレードする
 # -fオプションでファイルを指定することで任意の差分を追加できる
-$ helm upgrade [-f CONFIG_FILE] <RELEASE> <CHART>
+# --installオプションをつけることで、リリースが存在しない場合はチャートのインストールを行う
+$ helm upgrade [--install] [-f CONFIG_FILE] <RELEASE> <CHART>
+
+# 独自のチャートを作成する
+$ helm create <CHART>
+
+# helmファイルを整形する
+$ helm lint
+
+# チャートを配布用にパッケージ化する
+$ helm package <CHART>
 ```
